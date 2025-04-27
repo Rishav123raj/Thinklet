@@ -3,8 +3,8 @@ import json
 import traceback
 import pandas as pd
 from dotenv import load_dotenv
-from mcqgenerator.utils import read_file, get_table_data
-from mcqgenerator.logger import logging
+# from mcqgenerator.utils import read_file, get_table_data
+# from mcqgenerator.logger import logging
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
@@ -13,7 +13,7 @@ from langchain.chains import SequentialChain
 
 load_dotenv()
 
-key=os.getenv("GOOGLE_API_KEY")
+key="AIzaSyAwRnkaC6rJK533bn9bk6KcaozTY6ZsAzQ"
 
 llm=ChatGoogleGenerativeAI(google_api_key=key, model="gemini-2.0-flash", temperature=0.5)
 

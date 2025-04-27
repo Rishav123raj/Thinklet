@@ -23,21 +23,30 @@ def read_file(file):
 
 def get_table_data(quiz_str):
     try:
-        quiz_data = json.loads(quiz_str)
+        # Ensure quiz_str is a string
+        quiz_dict=json.loads(quiz_str)
         quiz_table_data=[]
-        
-        for key, value in quiz_data.items():
-            mcq=value["mcq"]
-            options=" || ".join(
+
+        for key, value in quiz_dict.items():
+            # Safely access dictionary keys using get(), with default values
+            mcq = value["mcq"]
+            options = " || ".join(
                 [
-                    f"{option} -> {option_value}" for option, option_value in value["options"].items() 
+                    f"{option} -> {option_value}" for option, option_value in value["options"].items()
                 ]
             )
-            correct=value["correct"]
-            quiz_table_data.append({"MCQ":mcq, "Options":options, "Correct":correct})
+            correct = value["correct"]
+            quiz_table_data.append(
+                {
+                    "MCQ": mcq, 
+                    "Options": options, 
+                    "Correct": correct
+                }
+            )
 
         return quiz_table_data
     
     except Exception as e:
+        # Print detailed error traceback for debugging
         traceback.print_exception(type(e), e, e.__traceback__)  
-        return False
+        return []  # Return an empty list to signify an error
